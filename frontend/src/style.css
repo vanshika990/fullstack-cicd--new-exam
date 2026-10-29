@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #e0f2fe, #eef2ff);
+color: #1e293b;
+}
+
+.container {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 30px 16px;
+}
+
+.card {
+width: 100%;
+max-width: 720px;
+background: white;
+padding: 40px 30px;
+border-radius: 20px;
+box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+text-align: center;
+}
+
+.badge {
+display: inline-block;
+padding: 8px 16px;
+background: #dbeafe;
+color: #1d4ed8;
+border-radius: 20px;
+font-weight: bold;
+}
+
+h1 {
+margin-top: 24px;
+color: #1d4ed8;
+}
+
+h2 {
+color: #475569;
+font-size: 21px;
+}
+
+p {
+line-height: 1.8;
+}
+
+.skills {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px;
+margin: 25px 0;
+}
+
+.skills span {
+padding: 9px 14px;
+background: #eff6ff;
+color: #1d4ed8;
+border-radius: 8px;
+font-weight: bold;
+}
+
+.backend {
+padding: 18px;
+background: #f8fafc;
+border: 1px solid #e2e8f0;
+border-radius: 12px;
+}
+
+footer {
+margin-top: 25px;
+color: #64748b;
+font-size: 13px;
+}
+
+@media (max-width: 480px) {
+.card {
+padding: 28px 18px;
+}
+
+h1 {
+font-size: 25px;
+}
+}
