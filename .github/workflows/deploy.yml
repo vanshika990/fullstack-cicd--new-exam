@@ -6,6 +6,9 @@ branches:
 - main
 workflow_dispatch:
 
+permissions:
+contents: read
+
 jobs:
 build-and-deploy:
 runs-on: ubuntu-latest
@@ -29,16 +32,16 @@ steps:
     with:
       context: ./backend
       push: true
-      tags: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-backend:latest
+      tags: vanshikajain46624/fullstack-backend:latest
 
   - name: Build and Push Frontend Image
     uses: docker/build-push-action@v6
     with:
       context: ./frontend
       push: true
-      tags: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-frontend:latest
+      tags: vanshikajain46624/fullstack-frontend:latest
 
-  - name: Deploy to AWS EC2
+  - name: Deploy to EC2
     uses: appleboy/ssh-action@v1.2.0
     with:
       host: ${{ secrets.EC2_HOST }}
@@ -48,7 +51,7 @@ steps:
         mkdir -p /home/ubuntu/fullstack-cicd
         cd /home/ubuntu/fullstack-cicd
 
-        cat > docker-compose.yml << 'EOF'
+        cat > docker-compose.yml <<'EOF'
         services:
           mongodb:
             image: mongo:8
@@ -59,7 +62,7 @@ steps:
               - app-network
 
           backend:
-            image: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-backend:latest
+            image: vanshikajain46624/fullstack-backend:latest
             restart: unless-stopped
             environment:
               PORT: "5000"
@@ -70,7 +73,7 @@ steps:
               - app-network
 
           frontend:
-            image: ${{ secrets.DOCKERHUB_USERNAME }}/fullstack-frontend:latest
+            image: vanshikajain46624/fullstack-frontend:latest
             restart: unless-stopped
             ports:
               - "80:80"
@@ -89,5 +92,5 @@ steps:
 
         sudo docker compose pull
         sudo docker compose up -d --remove-orphans
-        sudo docker image prune -f
+        sudo docker compose ps
 ```
