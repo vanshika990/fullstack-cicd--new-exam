@@ -1,0 +1,13 @@
+{
+"name": "vanshika-portfolio-backend",
+"version": "1.0.0",
+"description": "Node.js backend for a full-stack CI/CD practical",
+"main": "server.js",
+"scripts": {
+"start": "node server.js"
+},
+"dependencies": {
+"express": "^5.1.0",
+"mongodb": "^6.20.0"
+}
+}
