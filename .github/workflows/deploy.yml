@@ -52,7 +52,7 @@ jobs:
             cat > docker-compose.yml <<'EOF'
             services:
               mongodb:
-                image: mongo:8
+                image: mongo:7
                 restart: unless-stopped
                 volumes:
                   - mongodb_data:/data/db
